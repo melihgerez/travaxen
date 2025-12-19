@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travaxen - Trafikte Hayat Kurtaran Teknoloji</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(
+          135deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
+        min-height: 100vh;
+      }
+
+      /* Header */
+      header {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #e94560;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #e94560;
+      }
+
+      .lang-switch {
+        background: #e94560;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.3s ease;
+      }
+
+      .lang-switch:hover {
+        background: #c73e54;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 150px 2rem 80px;
+        text-align: center;
+        color: #fff;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #e94560, #ff6b6b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .notice-box {
+        background: rgba(233, 69, 96, 0.2);
+        border: 1px solid #e94560;
+        border-radius: 10px;
+        padding: 1rem 2rem;
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      /* About Section */
+      .about {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 80px 2rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #1a1a2e;
+      }
+
+      .about-content {
+        display: grid;
+        gap: 2rem;
+      }
+
+      .about-item {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 2rem;
+        border-radius: 15px;
+        border-left: 4px solid #e94560;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-item p {
+        font-size: 1.1rem;
+        color: #333;
+      }
+
+      /* Why Travaxen Section */
+      .why-travaxen {
+        padding: 80px 2rem;
+        color: #fff;
+      }
+
+      .why-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+      }
+
+      .feature-card .icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature-card p {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      /* Application Areas */
+      .applications {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 80px 2rem;
+      }
+
+      .app-card {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #fff;
+        padding: 3rem;
+        border-radius: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .app-card h3 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: #e94560;
+      }
+
+      .app-card ul {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 2rem;
+      }
+
+      .app-card li {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-left: 2rem;
+        position: relative;
+      }
+
+      .app-card li::before {
+        content: "🚑";
+        position: absolute;
+        left: 0;
+      }
+
+      /* CTA Buttons */
+      .cta-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background: #e94560;
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: #c73e54;
+        transform: scale(1.05);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #fff;
+        border: 2px solid #e94560;
+      }
+
+      .btn-secondary:hover {
+        background: #e94560;
+      }
+
+      /* Footer */
+      footer {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 60px 2rem 30px;
+        color: #fff;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .founder-info {
+        margin-bottom: 2rem;
+      }
+
+      .founder-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #e94560;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .social-links a {
+        color: #fff;
+        text-decoration: none;
+        padding: 0.8rem 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        transition: background 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background: #e94560;
+      }
+
+      .copyright {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      /* Animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate {
+        animation: fadeInUp 0.6s ease forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav>
+        <a href="#" class="logo">Travaxen</a>
+        <ul class="nav-links">
+          <li><a href="#about">Biz Kimiz?</a></li>
+          <li><a href="#why">Neden Travaxen?</a></li>
+          <li><a href="#applications">Uygulama Alanları</a></li>
+          <li><a href="#contact">İletişim</a></li>
+        </ul>
+        <a href="#" class="lang-switch">🌐 English</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Travaxen</h1>
+      <p>Trafikte hayat kurtaran teknoloji çözümleri</p>
+      <div class="notice-box">
+        <p>
+          Bu incelemekte olduğunuz proje düzenli olarak geliştirilmekte ve
+          güncellenmektedir. Bir hata, sorun fark ederseniz ya da sadece görüş
+          bildirmek isterseniz lütfen bize ulaşın.
+        </p>
+      </div>
+      <p>
+        Ürünün prototip görselleri ve temsili mesafe sitemize yerleştirilmiştir.
+      </p>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">🚀 Biz Kimiz?</h2>
+        <div class="about-content">
+          <div class="about-item animate">
+            <p>
+              Biz, teknolojiye tutkuyla bağlı genç bir ekip olarak trafikte
+              hayat kurtaracak çözümler üretmeyi amaçlıyoruz.
+            </p>
+          </div>
+          <div class="about-item animate">
+            <p>
+              Travaxen, sadece bir proje değil; sürücüler ile acil durum
+              ekipleri arasında farkındalığı artırarak can kayıplarını önlemeye
+              yönelik bir harekettir.
+            </p>
+          </div>
+          <div class="about-item animate">
+            <p>
+              Yazılım, elektronik ve trafik güvenliği alanlarında bir araya
+              gelerek, hem basit hem de uygulanabilir bir sistem tasarladık.
+            </p>
+          </div>
+          <div class="about-item animate">
+            <p>
+              Acil durum araçları yaklaştığında, sürücüler artık sadece sirene
+              güvenmeyecek. Sistemimiz onlara önceden haber verecek.
+            </p>
+          </div>
+          <div class="about-item animate">
+            <p>
+              Amacımız, teknolojiyi insan hayatını kolaylaştırmak ve korumak
+              için kullanmak. Travaxen, bunun sadece ilk adımı.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Travaxen Section -->
+    <section class="why-travaxen" id="why">
+      <h2 class="why-title">🚀 Neden Travaxen?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">✅</div>
+          <p>Sürücüye önceden uyarı verir.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">✅</div>
+          <p>Siren olmadan da iletişim sağlar.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">✅</div>
+          <p>Gece/gündüz, gürültülü ortamlarda bile etkili.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">✅</div>
+          <p>Acil durum araçlarının geçişini hızlandırır.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">❤️</div>
+          <p>Hayat kurtarır.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🚑</div>
+          <p>
+            Acil servis aracı şoförlerinin trafiğe takılmamak için alternatif
+            yollara başvurmasına gerek kalmadan varış noktasına en hızlı şekilde
+            ulaşılmasını sağlar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application Areas Section -->
+    <section class="applications" id="applications">
+      <div class="container">
+        <h2 class="section-title">🚦 Travaxen – Uygulama Alanları</h2>
+        <div class="app-card">
+          <h3>🚑 Acil Servis Araçları</h3>
+          <ul>
+            <li>
+              Ambulanslar, itfaiyeler, polis araçları için çevredeki sürücüleri
+              otomatik olarak önceden uyarır
+            </li>
+            <li>Kazaları, gecikmeleri ve zaman kaybını azaltır</li>
+          </ul>
+          <div class="cta-buttons">
+            <a
+              href="https://www.travaxen.com/ana-sayfa/detaylar"
+              class="btn btn-primary"
+              target="_blank"
+              >Daha Fazla Detay İçin Tıklayınız</a
+            >
+            <a
+              href="https://www.travaxen.com/ana-sayfa/g%C3%B6rseller"
+              class="btn btn-secondary"
+              target="_blank"
+              >Görseller İçin Tıklayınız</a
+            >
+            <a
+              href="https://www.travaxen.com/gelecekte"
+              class="btn btn-secondary"
+              target="_blank"
+              >Gelecekte Projeye Eklenecekler</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-content">
+        <div class="founder-info">
+          <h3>Proje Kurucu/Yönetici</h3>
+          <p style="font-size: 1.3rem; margin-bottom: 0.5rem">
+            <strong>Melih Gerez</strong>
+          </p>
+          <p>
+            Travaxen projesinin kurucusu Melih Gerez, projesini 11.07.2025
+            tarihinden itibaren düzenli olarak geliştirmekte ve büyütmektedir.
+          </p>
+        </div>
+        <div class="social-links">
+          <a
+            href="https://www.instagram.com/melihgerez?igsh=bDRyNjk4ZWNmcGZu"
+            target="_blank"
+            >📷 Instagram</a
+          >
+          <a href="mailto:melihgerez@gmail.com">📧 E-posta</a>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2025 Travaxen - Tüm Hakları Saklıdır</p>
+          <p style="margin-top: 0.5rem">
+            <a
+              href="https://www.travaxen.com/ana-sayfa"
+              style="color: #e94560; text-decoration: none"
+              >Ana Sayfa</a
+            >
+            |
+            <a
+              href="https://www.travaxen.com/home"
+              style="color: #e94560; text-decoration: none"
+              >Home</a
+            >
+            |
+            <a
+              href="https://www.travaxen.com/gelecekte"
+              style="color: #e94560; text-decoration: none"
+              >Gelecekte</a
+            >
+            |
+            <a
+              href="https://www.travaxen.com/in-the-future"
+              style="color: #e94560; text-decoration: none"
+              >In The Future</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".about-item, .feature-card").forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
