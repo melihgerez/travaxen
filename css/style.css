@@ -111,6 +111,8 @@ nav {
   text-decoration: none;
   font-weight: 500;
   transition: background 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
 
 .lang-switch:hover {
@@ -926,6 +928,11 @@ footer {
 
   .mobile-menu-btn {
     display: block;
+  }
+
+  .lang-switch {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.75rem;
   }
 
   .features-grid {

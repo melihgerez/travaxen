@@ -62,29 +62,43 @@ document.addEventListener("DOMContentLoaded", function () {
   // ========================================
 
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
+    threshold: 0.05,
+    rootMargin: "50px 0px 0px 0px",
   };
 
+  let animationIndex = 0;
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         // Add delay for staggered animation
+        const currentIndex = animationIndex++;
         setTimeout(() => {
           entry.target.classList.add("visible");
-        }, index * 100);
+        }, currentIndex * 100);
+        // Stop observing once visible
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
   // Observe elements for animation
-  document
-    .querySelectorAll(
-      ".about-item, .feature-card, .detail-card, .gallery-item, .gallery-section, .prototype-info, .prototype-detail, .cta-buttons, .founder-info, .future-card, .future-features, .app-card"
-    )
-    .forEach((el) => {
-      observer.observe(el);
+  const animatedElements = document.querySelectorAll(
+    ".about-item, .feature-card, .detail-card, .gallery-item, .gallery-section, .prototype-info, .prototype-detail, .cta-buttons, .founder-info, .future-card, .future-features, .app-card"
+  );
+
+  animatedElements.forEach((el) => {
+    observer.observe(el);
+  });
+
+  // Fallback: Make elements visible after a short delay if observer doesn't trigger
+  setTimeout(() => {
+    animatedElements.forEach((el) => {
+      if (!el.classList.contains("visible")) {
+        el.classList.add("visible");
+      }
     });
+  }, 1000);
 
   // ========================================
   // HEADER SCROLL EFFECT
