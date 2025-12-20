@@ -79,7 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Observe elements for animation
   document
-    .querySelectorAll(".about-item, .feature-card, .detail-card, .gallery-item")
+    .querySelectorAll(
+      ".about-item, .feature-card, .detail-card, .gallery-item, .gallery-section, .prototype-info, .prototype-detail, .cta-buttons, .founder-info, .future-card, .future-features, .app-card"
+    )
     .forEach((el) => {
       observer.observe(el);
     });
