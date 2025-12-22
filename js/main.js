@@ -67,9 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if ("IntersectionObserver" in window) {
     const observerOptions = {
-      threshold: 0.01,
-      // Trigger before entering and keep a bottom margin for fast jumps
-      rootMargin: "200px 0px 200px 0px",
+      // Wait until roughly a quarter of the element is visible
+      threshold: 0.25,
+      rootMargin: "0px 0px 0px 0px",
     };
 
     let animationIndex = 0;
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const revealNowIfInView = (el) => {
       if (el.classList.contains("visible")) return;
       const rect = el.getBoundingClientRect();
-      const buffer = 200; // matches rootMargin
+      const buffer = 0;
       const inView =
         rect.top < window.innerHeight + buffer && rect.bottom > -buffer;
       if (inView) {
