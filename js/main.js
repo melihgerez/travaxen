@@ -61,44 +61,68 @@ document.addEventListener("DOMContentLoaded", function () {
   // SCROLL ANIMATIONS
   // ========================================
 
-  const observerOptions = {
-    threshold: 0.05,
-    rootMargin: "50px 0px 0px 0px",
-  };
-
-  let animationIndex = 0;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // Add delay for staggered animation
-        const currentIndex = animationIndex++;
-        setTimeout(() => {
-          entry.target.classList.add("visible");
-        }, currentIndex * 100);
-        // Stop observing once visible
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  // Observe elements for animation
   const animatedElements = document.querySelectorAll(
     ".about-item, .feature-card, .detail-card, .gallery-item, .gallery-section, .prototype-info, .prototype-detail, .cta-buttons, .founder-info, .future-card, .future-features, .app-card"
   );
 
-  animatedElements.forEach((el) => {
-    observer.observe(el);
-  });
+  if ("IntersectionObserver" in window) {
+    const observerOptions = {
+      threshold: 0.01,
+      // Trigger before entering and keep a bottom margin for fast jumps
+      rootMargin: "200px 0px 200px 0px",
+    };
 
-  // Fallback: Make elements visible after a short delay if observer doesn't trigger
-  setTimeout(() => {
-    animatedElements.forEach((el) => {
-      if (!el.classList.contains("visible")) {
+    let animationIndex = 0;
+    const staggerStep = 30; // ms per element
+    const maxStagger = 300; // cap to avoid long waits
+
+    const revealNowIfInView = (el) => {
+      if (el.classList.contains("visible")) return;
+      const rect = el.getBoundingClientRect();
+      const buffer = 200; // matches rootMargin
+      const inView =
+        rect.top < window.innerHeight + buffer && rect.bottom > -buffer;
+      if (inView) {
         el.classList.add("visible");
+        return true;
+      }
+      return false;
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Add a short, capped stagger so items feel responsive
+          const currentIndex = animationIndex++;
+          const delay = Math.min(currentIndex * staggerStep, maxStagger);
+
+          setTimeout(() => {
+            entry.target.classList.add("visible");
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    animatedElements.forEach((el) => {
+      // Catch elements already in view (e.g., after jumping down)
+      if (!revealNowIfInView(el)) {
+        observer.observe(el);
       }
     });
-  }, 1000);
+
+    // Safety net: reveal anything still hidden after load+jump scenarios
+    setTimeout(() => {
+      animatedElements.forEach((el) => {
+        if (!el.classList.contains("visible")) {
+          revealNowIfInView(el);
+        }
+      });
+    }, 1200);
+  } else {
+    // Graceful degradation: show elements without scroll-based animation
+    animatedElements.forEach((el) => el.classList.add("visible"));
+  }
 
   // ========================================
   // HEADER SCROLL EFFECT

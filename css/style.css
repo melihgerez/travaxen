@@ -173,6 +173,21 @@ nav {
   overflow-wrap: break-word;
 }
 
+.seo-quote {
+  max-width: 840px;
+  margin: 0.5rem auto 1.5rem;
+  padding: 1rem 1.5rem;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.06);
+  border-left: 4px solid #e94560;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease 0.5s forwards;
+ }
+
 /* ========================================
    FOUNDER BANNER
    ======================================== */
